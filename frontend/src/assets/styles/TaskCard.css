@@ -1,0 +1,174 @@
+
+:root {
+  --card-bg-idle: #161925;
+  --card-bg-hover: #1e2235;
+  --card-border-subtle: rgba(255, 255, 255, 0.04);
+  
+  --text-active-card: #f8fafc;
+  --text-completed-card: #475569;
+  
+  --accent-neon-cyan: #00f2fe;
+  --accent-neon-blue: #0066ff;
+  --danger-red: #ef4444;
+  
+  --card-ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ==========================================================================
+   Estructura Base de la Tarjeta (Grid Item)
+   ========================================================================== */
+.premium-task-card {
+  position: relative;
+  background-color: var(--card-bg-idle);
+  border: 1px solid var(--card-border-subtle);
+  padding: 20px;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column; 
+  align-items: flex-start;
+  gap: 16px;
+  min-height: 140px; 
+  justify-content: space-between;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s var(--card-ease);
+  overflow: hidden;
+}
+
+
+.premium-task-card:hover {
+  transform: translateY(-4px);
+  background-color: var(--card-bg-hover);
+  border-color: rgba(0, 242, 254, 0.15);
+  box-shadow: 
+    0 16px 32px -12px rgba(0, 0, 0, 0.5),
+    0 0 20px -5px rgba(0, 242, 254, 0.05);
+}
+
+/* ==========================================================================
+   Custom Checkbox
+   ========================================================================== */
+.custom-checkbox-container {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+  width: 22px;
+  height: 22px;
+}
+
+.custom-checkbox-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkbox-checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 22px;
+  width: 22px;
+  background-color: rgba(255, 255, 255, 0.03);
+  border: 1.5px solid rgba(255, 255, 255, 0.15);
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s var(--card-ease);
+}
+
+.checkbox-checkmark svg {
+  width: 12px;
+  height: 12px;
+  color: #ffffff;
+  transform: scale(0) rotate(-20deg);
+  transition: all 0.2s var(--card-ease);
+}
+
+.custom-checkbox-container:hover input ~ .checkbox-checkmark {
+  border-color: var(--accent-neon-cyan);
+  background-color: rgba(0, 242, 254, 0.03);
+}
+
+.custom-checkbox-container input:checked ~ .checkbox-checkmark {
+  background: linear-gradient(135deg, var(--accent-neon-cyan) 0%, var(--accent-neon-blue) 100%);
+  border-color: transparent;
+  box-shadow: 0 0 10px rgba(0, 242, 254, 0.4);
+}
+
+.custom-checkbox-container input:checked ~ .checkbox-checkmark svg {
+  transform: scale(1) rotate(0deg);
+}
+
+.task-card-text {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text-active-card);
+  line-height: 1.4;
+  letter-spacing: -0.1px;
+  word-break: break-word;
+  transition: all 0.3s ease;
+  flex-grow: 1;
+}
+
+/* ==========================================================================
+   Boton de Acción: Eliminar 
+   ========================================================================== */
+.delete-task-btn {
+  align-self: flex-end;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #475569;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  opacity: 0.4; 
+}
+
+.delete-task-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+.premium-task-card:hover .delete-task-btn {
+  opacity: 1;
+  color: #94a3b8;
+}
+
+.delete-task-btn:hover {
+  background-color: rgba(239, 68, 68, 0.1);
+  color: var(--danger-red) !important;
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.1);
+}
+
+.delete-task-btn:active {
+  transform: scale(0.92);
+}
+
+/* ==========================================================================
+   Modificador de Estado: Tarea Completada 
+   ========================================================================== */
+.premium-task-card.is-completed {
+  background-color: rgba(22, 25, 37, 0.4);
+  border-color: rgba(255, 255, 255, 0.02);
+  box-shadow: none;
+}
+
+.premium-task-card.is-completed .task-card-text {
+  color: var(--text-completed-card);
+  text-decoration: line-through;
+  text-decoration-color: rgba(71, 85, 105, 0.5);
+}
+
+.premium-task-card.is-completed:hover {
+  transform: none; 
+  background-color: rgba(22, 25, 37, 0.4);
+  border-color: rgba(255, 255, 255, 0.02);
+}

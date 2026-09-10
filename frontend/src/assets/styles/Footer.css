@@ -1,0 +1,139 @@
+
+:root {
+  --telemetry-bg: #11131c;
+  --telemetry-border: rgba(255, 255, 255, 0.04);
+  
+  --text-pro-muted: #4b586e;
+  --text-pro-main: #ffffff;
+  
+  --gradient-efficiency: linear-gradient(90deg, #0066ff 0%, #00f2fe 100%);
+  --cyan-glow: rgba(0, 242, 254, 0.4);
+  
+  --telemetry-ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.telemetry-footer {
+  width: 100%;
+  background-color: var(--telemetry-bg);
+  border-top: 1px solid var(--telemetry-border);
+  padding: 32px 24px 24px 24px;
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+
+.efficiency-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.efficiency-info {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.efficiency-title {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-pro-muted);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+.efficiency-percentage {
+  font-size: 20px;
+  font-weight: 800;
+  color: #00f2fe;
+  font-variant-numeric: tabular-nums; 
+  text-shadow: 0 0 15px rgba(0, 242, 254, 0.3);
+}
+
+.efficiency-bar-track {
+  width: 100%;
+  height: 4px;
+  background-color: rgba(255, 255, 255, 0.02);
+  border-radius: 100px;
+  overflow: hidden;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.efficiency-bar-fill {
+  height: 100%;
+  background: var(--gradient-efficiency);
+  border-radius: 100px;
+  box-shadow: 0 0 12px var(--cyan-glow);
+  width: 0%;
+  transition: width 0.6s var(--telemetry-ease);
+}
+
+.analytics-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.metric-card {
+  background-color: rgba(255, 255, 255, 0.01);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  padding: 14px 16px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition: all 0.3s var(--telemetry-ease);
+}
+
+.metric-card-label {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-pro-muted);
+}
+
+.metric-card-number {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text-pro-main);
+  line-height: 1;
+}
+
+.metric-card:hover {
+  background-color: rgba(255, 255, 255, 0.03);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.metric-card.warning:hover {
+  border-color: rgba(245, 158, 11, 0.2);
+  box-shadow: inset 0 0 12px rgba(245, 158, 11, 0.02);
+}
+.metric-card.warning:hover .metric-card-number {
+  color: #f59e0b;
+}
+
+.metric-card.success:hover {
+  border-color: rgba(0, 242, 254, 0.2);
+  box-shadow: inset 0 0 12px rgba(0, 242, 254, 0.02);
+}
+.metric-card.success:hover .metric-card-number {
+  color: #00f2fe;
+  text-shadow: 0 0 10px rgba(0, 242, 254, 0.2);
+}
+
+/* Ajustes de flujo móvil */
+@media (max-width: 440px) {
+  .telemetry-footer {
+    padding: 24px 16px 16px 16px;
+  }
+  .analytics-grid {
+    gap: 8px;
+  }
+  .metric-card {
+    padding: 10px 12px;
+  }
+  .metric-card-number {
+    font-size: 18px;
+  }
+}

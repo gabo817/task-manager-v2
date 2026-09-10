@@ -1,0 +1,132 @@
+<html lang="es">
+  <!-- Elemento principal del documento.
+    lang="es" indica que el contenido está en español -->
+  <head>
+    <!-- Contiene información de configuración de la página -->
+    <meta charset="UTF-8" />
+    <!-- Permite mostrar correctamente caracteres especiales
+como tildes, ñ y símbolos -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Permite que la página se adapte correctamente
+a computadoras, tablets y celulares -->
+    <title>Task Manager</title>
+    <!-- Texto que aparecerá en la pestaña del navegador -->
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 30px;
+        background-color: #f4f4f4;
+      }
+      h1 {
+        color: #333333;
+        margin-bottom: 20px;
+      }
+      input {
+        padding: 10px;
+        width: 250px;
+        font-size: 16px;
+      }
+      button {
+        padding: 10px 15px;
+        font-size: 16px;
+        cursor: pointer;
+        background: #1b579bac;
+        color: white;
+        /* box-shadow: 0 0 10px 1px rgb(0, 219, 252); */
+      }
+      ul {
+        padding: 0;
+        margin-top: 20px;
+      }
+      li {
+        list-style: none;
+        background-color: white;
+        padding: 10px;
+        margin-bottom: 8px;
+        display: flex;
+        /* justify-content: space-between; */
+        align-items: center;
+        gap: 10px;
+      }
+      .text-list {
+        flex: 1;
+      }
+      .delete-btn {
+        padding: 5px;
+        background: red;
+        font-size: 10px;
+      }
+      .update-btn {
+        padding: 5px;
+        font-size: 10px;
+      }
+      .delete-btn::before {
+        content: "🗑️";
+      }
+      .addContainer {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+      }
+      #taskInput {
+        flex: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Aquí se colocará todo el contenido visible de la página -->
+    <h1>Task Manager</h1>
+    <div class="addContainer">
+      <input type="text" id="taskInput" placeholder="Escribe una nueva tarea" />
+      <button id="addTaskBtn">+ Agregar Tarea</button>
+    </div>
+    <ul id="taskList"></ul>
+
+    <script>
+      const taskInput = document.getElementById("taskInput");
+      const addTaskBtn = document.getElementById("addTaskBtn");
+      const taskList = document.getElementById("taskList");
+      const addTask = () => {
+        console.log("Saludos :)");
+
+        const taskText = taskInput.value.trim();
+        if (taskText == "") {
+          return;
+        }
+        const li = document.createElement("li");
+
+        const taskSpan = document.createElement("span");
+        taskSpan.textContent = taskText;
+        taskSpan.classList.add("text-list");
+        // Boton eliminar
+        const deleteButton = document.createElement("button");
+        deleteButton.textContent = "Eliminar";
+        deleteButton.classList.add("delete-btn");
+        deleteButton.addEventListener("click", () => {
+          li.remove();
+        });
+        // Boton actualizar
+        const updateButton = document.createElement("button");
+        updateButton.textContent = "✏️ Editar";
+        updateButton.classList.add("update-btn");
+        updateButton.addEventListener("click", () => {});
+
+        li.appendChild(taskSpan);
+        li.appendChild(updateButton);
+        li.appendChild(deleteButton);
+        taskList.appendChild(li);
+        taskInput.value = "";
+        taskInput.focus();
+      };
+      addTaskBtn.addEventListener("click", addTask);
+      taskInput.addEventListener("keydown", (event) => {
+        if (event.key === "Enter") {
+          addTask();
+        }
+      });
+    </script>
+  </body>
+</html>
+
+<!-- Fin del documento HTML -->

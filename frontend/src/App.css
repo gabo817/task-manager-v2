@@ -1,0 +1,66 @@
+/* ==========================================================================
+   Top Utility Bar & Logout Action
+   ========================================================================== */
+.app-utility-bar {
+  position: absolute;
+  top: 20px;
+  right: 24px;
+  z-index: 10; /* Asegura que flote por encima del contenido sin obstruir */
+  display: flex;
+  justify-content: flex-end;
+}
+
+.logout-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background-color: rgba(255, 255, 255, 0.01);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  outline: none;
+  color: #4b586e; /* Color atenuado para mantener perfil bajo por defecto */
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: -0.1px;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.logout-btn svg {
+  width: 13px;
+  height: 13px;
+  transition: transform 0.25s ease;
+}
+
+/* ==========================================================================
+   Microinteracciones (Hover & Active)
+   ========================================================================== */
+.logout-btn:hover {
+  color: #ef4444; 
+  background-color: rgba(239, 68, 68, 0.06);
+  border-color: rgba(239, 68, 68, 0.2);
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.05);
+}
+
+.logout-btn:hover svg {
+  transform: translateX(2px);
+}
+
+.logout-btn:active {
+  transform: scale(0.96);
+}
+
+@media (max-width: 480px) {
+  .app-utility-bar {
+    top: 16px;
+    right: 16px;
+  }
+  .logout-btn span {
+    display: none; /* Esconde el texto "Salir" en móviles pequeños */
+  }
+  .logout-btn {
+    padding: 8px; /* Convierte el botón en un botón de acción circular/cuadrado minimalista */
+    border-radius: 50%;
+  }
+}
