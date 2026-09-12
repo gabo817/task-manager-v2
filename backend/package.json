@@ -6,8 +6,7 @@
   "scripts": {
     "dev": "ts-node-dev src/index.ts",
     "build": "tsc",
-    "test": "vitest run",
-    "postinstall": "prisma generate"
+    "test": "vitest run"
   },
   "keywords": [],
   "author": "",
