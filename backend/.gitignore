@@ -17,3 +17,7 @@ build/
 *.log
 
 /src/generated/prisma
+# Cobertura de pruebas
+coverage/
+*.lcov
+.nyc_output/
