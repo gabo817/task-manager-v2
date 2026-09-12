@@ -29,6 +29,9 @@ jobs:
     defaults:
       run:
         working-directory: ./backend
+    env:
+      DATABASE_URL: "file:./dev.db"
+      JWT_SECRET: "secreto_para_ci_cd"
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -37,7 +40,6 @@ jobs:
           cache: 'npm'
           cache-dependency-path: backend/package-lock.json
       - run: npm ci
-      - run: npx prisma generate  # Genera el cliente de Prisma
       - run: npm run build
 
   pruebas-frontend:
@@ -62,6 +64,9 @@ jobs:
     defaults:
       run:
         working-directory: ./backend
+    env:
+      DATABASE_URL: "file:./dev.db"
+      JWT_SECRET: "secreto_para_ci_cd"
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -70,13 +75,15 @@ jobs:
           cache: 'npm'
           cache-dependency-path: backend/package-lock.json
       - run: npm ci
-      - run: npx prisma generate  # Necesario antes de importar el cliente en Vitest
       - run: npx vitest run --coverage
 
   e2e:
     name: Pruebas E2E (Playwright)
     needs: [frontend, backend]
     runs-on: ubuntu-latest
+    env:
+      DATABASE_URL: "file:./dev.db"
+      JWT_SECRET: "secreto_para_ci_cd"
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -93,8 +100,8 @@ jobs:
         run: npm ci
         working-directory: ./backend
 
-      - name: Generar Prisma Client (Backend)
-        run: npx prisma generate
+      - name: Generar base de datos SQLite para E2E
+        run: npx prisma db push
         working-directory: ./backend
 
       - name: Instalar browsers de Playwright
