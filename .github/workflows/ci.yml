@@ -37,6 +37,7 @@ jobs:
           cache: 'npm'
           cache-dependency-path: backend/package-lock.json
       - run: npm ci
+      - run: npx prisma generate  # Genera el cliente de Prisma
       - run: npm run build
 
   pruebas-frontend:
@@ -69,6 +70,7 @@ jobs:
           cache: 'npm'
           cache-dependency-path: backend/package-lock.json
       - run: npm ci
+      - run: npx prisma generate  # Necesario antes de importar el cliente en Vitest
       - run: npx vitest run --coverage
 
   e2e:
@@ -89,6 +91,10 @@ jobs:
 
       - name: Instalar dependencias Backend
         run: npm ci
+        working-directory: ./backend
+
+      - name: Generar Prisma Client (Backend)
+        run: npx prisma generate
         working-directory: ./backend
 
       - name: Instalar browsers de Playwright
