@@ -16,5 +16,5 @@ test("un usuario puede iniciar sesión, crear una tarea y verla en la lista", as
   await page.getByRole("button", { name: "Añadir tarea" }).click();
 
   // 5. Verificar que la tarea aparece en la pantalla
-  //  await expect(page.getByText("Comprar pan")).toBeVisible();
+  await expect(page.getByText("Comprar pan")).toBeVisible();
 });
