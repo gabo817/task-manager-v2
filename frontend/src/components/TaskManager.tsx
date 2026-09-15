@@ -37,7 +37,7 @@ export default function TaskManager({ token, onLogout }: TaskManagerProps) {
       }
     };
     fetchTasks();
-  }, [token, onLogout]);
+  }, [token, onLogout,BACKEND_URL]);
 
   const addTask = async (text: string) => {
     const response = await fetch(BACKEND_URL, {
