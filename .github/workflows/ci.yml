@@ -130,8 +130,15 @@ jobs:
       - name: Instalar Railway CLI
         run: npm install -g @railway/cli
 
-      - name: Verificar Railway CLI
-        run: railway whoami
+      - name: Verificar RAILWAY_TOKEN
+        run: |
+          if [ -z "$RAILWAY_TOKEN" ]; then
+            echo "❌ RAILWAY_TOKEN está vacío"
+            exit 1
+          fi
+
+          echo "✅ RAILWAY_TOKEN está presente"
+          echo "Longitud: ${#RAILWAY_TOKEN}"
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
 
