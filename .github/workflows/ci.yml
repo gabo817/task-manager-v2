@@ -143,7 +143,11 @@ jobs:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
 
       - name: Desplegar a Railway
-        run: railway up --service backend --environment staging
+        run: railway up \
+            --project f43aaa91-781c-4b4d-afde-f83d80104907 \
+            --service task-manager-v2 \
+            --environment staging \
+            --ci
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
   deploy-produccion:
@@ -158,6 +162,6 @@ jobs:
         run: npm install -g @railway/cli
 
       - name: Desplegar a Railway (producción)
-        run: railway up --service backend --environment production
+        run: railway up --service task-manager-v2 --environment production
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
