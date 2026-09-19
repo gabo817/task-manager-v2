@@ -149,7 +149,7 @@ jobs:
         run: |
           railway up \
             --project f43aaa91-781c-4b4d-afde-f83d80104907 \
-            --service task-manager-v2 \
+            --service task-manager-prod \
             --environment production \
             --ci
         env:
