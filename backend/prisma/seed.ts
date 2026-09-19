@@ -20,18 +20,17 @@ async function main() {
 
   console.log(`Usuario de prueba creado: ${username}`);
 
-  // const tareaPrueba= 'Tarea de ejemplo para pruebas'
-  // await prisma.task.upsert({
-  //   where: { id: 1 },
-  //   update: {},
-  //   create: {
-  //     id: 1,
-  //     text: tareaPrueba,
-  //     completed: false,
-  //   },
-  // })
+  const tareaPrueba= 'Tarea de ejemplo para pruebas'
+  await prisma.task.upsert({
+    where: { id: 1 },
+    update: {},
+    create: {
+      text: tareaPrueba,
+      completed: false,
+    },
+  })
 
-  // console.log(`Tarea de prueba creada: ${tareaPrueba}`);
+  console.log(`Tarea de prueba creada: ${tareaPrueba}`);
 }
 
 main()
