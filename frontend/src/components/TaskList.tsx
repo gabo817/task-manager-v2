@@ -22,7 +22,7 @@ function TaskList(props: TaskListProps) {
   return (
     <div className="task-list-wrapper">
       <div className="list-meta-header">
-        <span className="meta-title">Tus tareas</span>
+        <span className="meta-title">Mis tareas</span>
         <span className="meta-counter">{props.tasks.length}</span>
       </div>
 
